@@ -214,6 +214,12 @@ select option{color:#111;}
 .service-detail h2{font-size:1.7rem; color:var(--navy); margin-bottom:16px;}
 .service-detail p{color:rgba(18,20,46,0.65); margin-bottom:12px;}
 
+/* ---------- equip ---------- */
+.equip{padding:110px 0; background:var(--navy); color:var(--white);}
+.equip-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+.equip h2{font-size:clamp(1.8rem,3vw,2.4rem); font-weight:700; margin-bottom:16px;}
+.equip p{color:rgba(255,255,255,0.72); max-width:480px;}
+
 /* ---------- blog ---------- */
 .blog{padding:110px 0; background:var(--white);}
 .blog-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
@@ -258,6 +264,7 @@ footer p{color:rgba(255,255,255,0.45); font-size:0.82rem;}
   .pitch-graphic{height:220px; order:-1;}
   .form-row{grid-template-columns:1fr;}
   .service-grid{grid-template-columns:1fr;}
+  .equip-grid{grid-template-columns:1fr;}
   .blog-grid{grid-template-columns:1fr;}
   .hero{padding:140px 0 80px;}
   .stat-row{grid-template-columns:1fr 1fr;}

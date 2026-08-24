@@ -1,7 +1,17 @@
+RewriteEngine On
+
+# Redirect any URL that still has .html in it to the clean version (SEO-safe, permanent)
+RewriteCond %{THE_REQUEST} /([^.]+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# Serve the .html file when the clean URL is requested
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
 # Optional: turns blog-post.html?slug=my-post into /blog/my-post
 # Only works if Hostinger's server has mod_rewrite enabled (it does by default
 # on shared hosting). If you don't want pretty URLs, just delete this file —
 # blog-post.html?slug=... links still work fine on their own.
 
-RewriteEngine On
 RewriteRule ^blog/([a-z0-9-]+)/?$ blog-post.html?slug=$1 [L,QSA]

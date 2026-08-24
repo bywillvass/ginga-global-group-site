@@ -76,7 +76,7 @@ async function renderBlogPost() {
     container.innerHTML = `
       <header class="post-header">
         <div class="wrap">
-          <div class="breadcrumb"><a href="blog.html">Blog</a> / ${escapeHtml(post.Title)}</div>
+          <div class="breadcrumb"><a href="blog">Blog</a> / ${escapeHtml(post.Title)}</div>
           <span class="blog-tag">${escapeHtml(post.Category || 'GGG')}</span>
           <h1>${escapeHtml(post.Title)}</h1>
           <div class="post-meta">${escapeHtml(post.Date || '')}</div>

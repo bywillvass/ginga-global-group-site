@@ -1,0 +1,4 @@
+Drop your images into this folder using the exact filenames listed in README.md.
+The site already has placeholder boxes wired up for every filename — once a
+matching file lands here and you re-upload the folder, the placeholder is
+replaced by your image automatically. No code changes needed.

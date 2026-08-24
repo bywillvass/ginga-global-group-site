@@ -1,0 +1,7 @@
+# Optional: turns blog-post.html?slug=my-post into /blog/my-post
+# Only works if Hostinger's server has mod_rewrite enabled (it does by default
+# on shared hosting). If you don't want pretty URLs, just delete this file —
+# blog-post.html?slug=... links still work fine on their own.
+
+RewriteEngine On
+RewriteRule ^blog/([a-z0-9-]+)/?$ blog-post.html?slug=$1 [L,QSA]

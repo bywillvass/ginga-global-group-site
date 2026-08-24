@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Ginga Global Group</title>
+<meta name="description" content="Get in touch with Ginga Global Group.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo-link">
+      <img src="images/logo.png" alt="Ginga Global Group logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+      <span class="logo-text" style="display:none;">GINGA <span>GLOBAL GROUP</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
+    <h1>Talk to us about your pathway.</h1>
+    <p>Whether it's a question about the Elite Neon Cup or general representation, our team responds directly — no call centre, no automated replies.</p>
+  </div>
+</section>
+
+<section class="contact" style="padding-top:70px;">
+  <div class="wrap">
+    <div class="contact-info">
+      <span class="eyebrow">Get In Touch</span>
+      <div class="contact-line"><b>Email</b>info@gingaglobalgroup.com</div>
+      <div class="contact-line"><b>Phone</b>+61 414 580 591</div>
+      <div class="contact-line"><b>Based in</b>Sydney, Australia</div>
+      <div class="social-row">
+        <a href="https://www.instagram.com/gingaglobalgroup" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="https://www.facebook.com/gingaglobalgroup" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+      </div>
+    </div>
+    <div>
+      <form id="contactForm" novalidate>
+        <input type="hidden" name="formType" value="Contact">
+        <div class="honeypot" aria-hidden="true">
+          <label for="company2">Company</label>
+          <input type="text" id="company2" name="company" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="cName">Name</label>
+            <input type="text" id="cName" name="name" required>
+          </div>
+          <div>
+            <label for="cEmail">Email</label>
+            <input type="email" id="cEmail" name="email" required>
+          </div>
+        </div>
+        <div>
+          <label for="cSubject">Subject</label>
+          <input type="text" id="cSubject" name="subject" placeholder="What's this about?">
+        </div>
+        <div>
+          <label for="cMessage">Message</label>
+          <textarea id="cMessage" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold" style="margin-top:4px;">Send message</button>
+        <div class="form-status" id="contactStatus"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Ginga Global Group. All rights reserved.</p>
+    <p>gingaglobalgroup.com</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  handleFormSubmit(document.getElementById('contactForm'), document.getElementById('contactStatus'), 'Send message');
+</script>
+</body>
+</html>

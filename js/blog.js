@@ -1,15 +1,13 @@
-// Fetches published rows from the "Blog" tab of the Google Sheet (via the
-// same Apps Script deployment used for form submissions) and renders them.
-// Requires SCRIPT_URL from main.js to be set.
+// Fetches published blog posts from the static blog-posts.json file.
+// That file is kept up to date by a Google Apps Script that pushes to
+// GitHub whenever the Blog sheet is edited — no cold-start delay.
 
 async function fetchBlogPosts() {
-  const res = await fetch(`${SCRIPT_URL}?sheet=Blog`);
+  const res = await fetch(`/blog-posts.json?v=${Date.now()}`);
   if (!res.ok) throw new Error('Could not load posts');
   const posts = await res.json();
-  // newest first, published only
-  return posts
-    .filter(p => String(p.Published).toUpperCase() === 'TRUE')
-    .sort((a, b) => new Date(b.Date) - new Date(a.Date));
+  // already filtered to Published=TRUE by the Apps Script; sort newest first
+  return posts.sort((a, b) => new Date(b.Date) - new Date(a.Date));
 }
 
 function slugify(str) {

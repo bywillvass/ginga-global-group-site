@@ -88,14 +88,14 @@ async function renderBlogPost() {
     const paragraphs = String(post.Content || '').split(/\n+/).filter(Boolean).map(p => `<p>${escapeHtml(p)}</p>`).join('');
 
     container.innerHTML = `
-      <header class="post-header">
+      <div class="post-header">
         <div class="wrap">
           <div class="breadcrumb"><a href="blog">Blog</a> / ${escapeHtml(post.Title)}</div>
           <span class="blog-tag">${escapeHtml(post.Category || 'GGG')}</span>
           <h1>${escapeHtml(post.Title)}</h1>
           <div class="post-meta">${escapeHtml(post.Date || '')}</div>
         </div>
-      </header>
+      </div>
       <section class="post-body">
         <div class="wrap post-content-wrap">
           <div class="img-slot" style="--ar:16/9;">

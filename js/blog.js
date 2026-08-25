@@ -30,6 +30,7 @@ function renderBlogCard(post) {
   const img = post.Image || `images/blog-${slug}.jpg`;
   const imgPos = post.ImagePosition || 'center 20%';
   const tag = post.Tag || post.Category || 'GGG';
+  const badgeLabel = post.Series || tag;
   return `
     <article class="blog-card">
       <div class="img-slot" style="--ar:16/9;">
@@ -37,7 +38,7 @@ function renderBlogCard(post) {
         <div class="img-slot-label"><b>${img}</b><span>1200×675px</span></div>
       </div>
       <div class="blog-card-body">
-        <a class="blog-tag tag-link" href="blog.html?tag=${encodeURIComponent(tag)}">${escapeHtml(tag)}</a>
+        <a class="blog-tag tag-link" href="blog.html?tag=${encodeURIComponent(tag)}">${escapeHtml(badgeLabel)}</a>
         <h3>${escapeHtml(post.Title)}</h3>
         <p>${escapeHtml(post.Excerpt || '')}</p>
         <a class="blog-read" href="blog-post.html?slug=${encodeURIComponent(slug)}">Read post →</a>

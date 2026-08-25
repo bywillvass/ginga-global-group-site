@@ -30,7 +30,14 @@
   .cbfc-trial-stats .about-stat { margin-top:8px; padding-top:10px; }
   .cbfc-trial-stats .about-stat b { line-height:1.2; }
 
-  .alert-banner { background:#C9A227; padding:18px 0; }
+  .section-alert { display:flex; align-items:flex-start; gap:10px; background:rgba(201,162,39,0.13); border-left:3px solid #C9A227; border-radius:2px; padding:14px 18px; margin-bottom:24px; }
+  .section-alert .sa-icon { flex-shrink:0; font-size:1rem; line-height:1.5; }
+  .section-alert p { margin:0; font-size:0.88rem; color:var(--navy); line-height:1.55; }
+  .section-alert strong { color:var(--navy); font-weight:700; }
+  .light-on-dark .section-alert { background:rgba(201,162,39,0.18); border-left-color:#C9A227; }
+  .light-on-dark .section-alert p, .light-on-dark .section-alert strong { color:var(--white); }
+
+  .alert-banner { background:#C9A227; padding:18px 0; margin-top:63px; }
   .alert-banner .alert-inner { display:flex; align-items:flex-start; gap:14px; }
   .alert-banner .alert-icon { font-size:1.35rem; flex-shrink:0; line-height:1.4; }
   .alert-heading { display:block; font-family:var(--font-head); font-size:0.82rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--navy); margin-bottom:7px; }
@@ -95,6 +102,10 @@
   <div class="wrap">
     <div class="about-grid" style="align-items:start;">
       <div>
+        <div class="section-alert">
+          <span class="sa-icon">⚠</span>
+          <p><strong>Updated today:</strong> venue is now <strong>The Cage Beverly Hills, 60 Vanessa Street, Beverly Hills.</strong> U9/10s start time is now <strong>5:30pm.</strong></p>
+        </div>
         <div class="stat-row cbfc-trial-stats" style="margin-top:0;">
           <div class="about-stat">
             <b>Tue 25 Aug 2026</b>
@@ -129,6 +140,10 @@
       <span class="eyebrow">Trial Schedule</span>
       <h2>All age groups, one afternoon.</h2>
       <p>Arrive 10 to 15 minutes before your age group's start time so your player can settle in, get their boots on, and meet the coaches before the session begins.</p>
+    </div>
+    <div class="section-alert">
+      <span class="sa-icon">⚠</span>
+      <p><strong>Location &amp; time updated:</strong> all sessions now at <strong>The Cage Beverly Hills, 60 Vanessa Street, Beverly Hills.</strong> U9/10s start time moved to <strong>5:30pm.</strong></p>
     </div>
     <table class="trials-table">
       <thead>
@@ -176,6 +191,10 @@
           <span class="eyebrow">Before You Arrive</span>
           <h2>What to bring.</h2>
           <p>Come ready to train. Your player will need:</p>
+        </div>
+        <div class="section-alert">
+          <span class="sa-icon">⚠</span>
+          <p><strong>Updated venue:</strong> today's trials are at <strong>The Cage Beverly Hills, 60 Vanessa Street, Beverly Hills.</strong></p>
         </div>
         <ul class="criteria-list">
           <li><b>Football boots.</b> Fitted and laced, appropriate for the surface at The Cage Beverly Hills.</li>

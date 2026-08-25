@@ -5,11 +5,15 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Programs | Ginga Global Group</title>
-<meta name="description" content="Elite Neon Cup Athens 2027 — register your interest for GGG's international recruitment pathway.">
+<meta name="description" content="From international recruitment pathways to elite training camps abroad — GGG's programs for players across Sydney, Melbourne and Adelaide.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  .program-hub-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:20px; }
+  @media (max-width:860px) { .program-hub-grid { grid-template-columns:1fr; } }
+</style>
 </head>
 <body>
 
@@ -34,143 +38,63 @@
 <section class="page-hero">
   <div class="wrap">
     <div class="breadcrumb"><a href="/">Home</a> / Programs</div>
-    <h1>Current Program</h1>
-    <p>Elite Neon Cup — Athens 2027. A recruitment pathway for Greek-heritage players at NPL level.</p>
-  </div>
-</section>
-
-<section class="programs" id="elite-neon-cup" style="padding-top:70px;">
-  <div class="wrap light-on-dark">
-    <div class="program-card" style="grid-template-columns:1fr 1fr;">
-      <div>
-        <div class="img-slot" style="--ar:1/1; margin-bottom:24px;">
-          <img src="images/program-elite-neon-cup.jpg" alt="Elite Neon Cup" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="img-slot-label"><b>images/program-elite-neon-cup.jpg</b><span>900×675px</span></div>
-        </div>
-        <h3>Who this is for</h3>
-        <p>The Elite Neon Cup gives eligible players the chance to represent their heritage on an international stage in Athens. We're currently shortlisting for the 2027 squad.</p>
-        <ul class="criteria-list">
-          <li>Born 2011 or 2013</li>
-          <li>Currently playing NPL-level football</li>
-          <li>Greek heritage (player, parent or grandparent)</li>
-          <li>Based in Sydney, Melbourne or Adelaide</li>
-        </ul>
-        <p style="font-size:0.85rem; color:rgba(255,255,255,0.55);">Register below and our team will follow up directly to confirm eligibility and next steps.</p>
-      </div>
-
-      <div>
-        <form id="eliteNeonForm" novalidate>
-          <input type="hidden" name="formType" value="EliteNeonCup">
-          <div class="honeypot" aria-hidden="true">
-            <label for="company">Company</label>
-            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
-          </div>
-
-          <div class="form-row">
-            <div>
-              <label for="playerName">Player name</label>
-              <input type="text" id="playerName" name="playerName" required>
-            </div>
-            <div>
-              <label for="dob">Date of birth</label>
-              <input type="date" id="dob" name="dob" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div>
-              <label for="position">Position</label>
-              <input type="text" id="position" name="position" placeholder="e.g. Centre-back">
-            </div>
-            <div>
-              <label for="club">Current club</label>
-              <input type="text" id="club" name="club" required>
-            </div>
-          </div>
-
-          <div>
-            <label for="city">City</label>
-            <select id="city" name="city" required>
-              <option value="">Select city</option>
-              <option>Sydney</option>
-              <option>Melbourne</option>
-              <option>Adelaide</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <div>
-              <label for="parentName">Parent / guardian name</label>
-              <input type="text" id="parentName" name="parentName" required>
-            </div>
-            <div>
-              <label for="parentEmail">Parent / guardian email</label>
-              <input type="email" id="parentEmail" name="parentEmail" required>
-            </div>
-          </div>
-
-          <div>
-            <label for="phone">Contact phone</label>
-            <input type="tel" id="phone" name="phone" required>
-          </div>
-
-          <div class="checkbox-row">
-            <input type="checkbox" id="heritage" name="heritage" required>
-            <label for="heritage">I confirm this player has Greek heritage (player, parent or grandparent)</label>
-          </div>
-
-          <button type="submit" class="btn btn-gold" style="margin-top:8px;">Register interest</button>
-          <div class="form-status" id="eliteNeonStatus"></div>
-        </form>
-      </div>
-    </div>
+    <h1>Our Programs &amp; Tours</h1>
+    <p>From international recruitment pathways to elite training camps abroad, here's how we build opportunity for players across Sydney, Melbourne and Adelaide.</p>
   </div>
 </section>
 
 <section class="about">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Past Tours</span>
-      <h2>Our recent elite international camps.</h2>
-      <p>We've recently taken teams to Brazil and Thailand, competing against some of the best youth football in the world.</p>
-    </div>
-    <div class="story-grid">
+    <div class="program-hub-grid">
+
       <div class="story-card">
         <div class="img-slot" style="--ar:4/3;">
-          <img src="images/program-brazil-tour.jpg" alt="Brazil tour" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="img-slot-label"><b>images/program-brazil-tour.jpg</b><span>800×600px</span></div>
+          <img src="images/program-elite-neon-cup.jpg" alt="Elite Neon Cup — Athens 2027" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="img-slot-label"><b>images/program-elite-neon-cup.jpg</b></div>
+        </div>
+        <div class="story-body">
+          <h3>Elite Neon Cup — Athens 2027</h3>
+          <div class="meta">Recruitment Pathway · Active</div>
+          <p>A squad selection pathway for Greek-heritage NPL-level players born 2011 or 2013. Trials are running now in Sydney and Melbourne.</p>
+          <a href="elite-neon-cup" class="btn btn-gold" style="display:inline-flex; margin-top:16px;">Learn more &amp; register</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="img-slot" style="--ar:4/3;">
+          <img src="images/program-brazil-tour.jpg" alt="Brazil Tour" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="img-slot-label"><b>images/program-brazil-tour.jpg</b></div>
         </div>
         <div class="story-body">
           <h3>Brazil Tour</h3>
-          <div class="meta">International training camp</div>
-          <p>A full training and match program across Brazil, giving players first-hand exposure to elite football culture.</p>
+          <div class="meta">International Training Camp</div>
+          <p>A full training and match program across Brazil, giving players first-hand exposure to elite football culture and competition.</p>
         </div>
       </div>
+
       <div class="story-card">
         <div class="img-slot" style="--ar:4/3;">
-          <img src="images/program-thailand-tour.jpg" alt="Thailand tour" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="img-slot-label"><b>images/program-thailand-tour.jpg</b><span>800×600px</span></div>
+          <img src="images/program-thailand-tour.jpg" alt="Thailand Tour" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="img-slot-label"><b>images/program-thailand-tour.jpg</b></div>
         </div>
         <div class="story-body">
           <h3>Thailand Tour</h3>
-          <div class="meta">International training camp</div>
-          <p>Players competed against some of the region's best youth sides as part of a structured overseas program.</p>
+          <div class="meta">International Training Camp</div>
+          <p>Players competed against some of the region's best youth sides as part of a structured overseas development program.</p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p>© 2026 Ginga Global Group. All rights reserved.</p>
+    <p>&copy; 2026 Ginga Global Group. All rights reserved.</p>
     <p>gingaglobalgroup.com</p>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
-<script>
-  handleFormSubmit(document.getElementById('eliteNeonForm'), document.getElementById('eliteNeonStatus'), 'Register interest');
-</script>
 </body>
 </html>

@@ -16,17 +16,33 @@ function slugify(str) {
   return String(str).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
-// ---- blog.html: render the list ----
+// ---- blog grids: render one or more grids, with optional category filtering ----
+// Grids are matched by the .blog-grid class. If a grid has a data-category
+// attribute, only posts whose Category field matches exactly are shown.
 async function renderBlogList() {
-  const grid = document.getElementById('blogGrid');
-  if (!grid) return;
+  const grids = document.querySelectorAll('.blog-grid');
+  if (!grids.length) return;
+
+  let posts;
   try {
-    const posts = await fetchBlogPosts();
-    if (!posts.length) {
+    posts = await fetchBlogPosts();
+  } catch (err) {
+    grids.forEach(grid => {
+      grid.innerHTML = '<div class="blog-empty">Couldn\'t load posts right now. Refresh, or check the Script URL in js/main.js.</div>';
+    });
+    return;
+  }
+
+  grids.forEach(grid => {
+    const category = grid.dataset.category || null;
+    const filtered = category ? posts.filter(p => p.Category === category) : posts;
+
+    if (!filtered.length) {
       grid.innerHTML = '<div class="blog-empty">No posts published yet — check back soon.</div>';
       return;
     }
-    grid.innerHTML = posts.map(post => {
+
+    grid.innerHTML = filtered.map(post => {
       const slug = post.Slug || slugify(post.Title);
       const img = post.Image || `images/blog-${slug}.jpg`;
       return `
@@ -43,9 +59,7 @@ async function renderBlogList() {
           </div>
         </article>`;
     }).join('');
-  } catch (err) {
-    grid.innerHTML = '<div class="blog-empty">Couldn\'t load posts right now. Refresh, or check the Script URL in js/main.js.</div>';
-  }
+  });
 }
 
 // ---- blog-post.html: render a single post ----

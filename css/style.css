@@ -90,7 +90,7 @@ header{
 .hero{
   background:linear-gradient(180deg, var(--navy-deep), var(--navy) 60%, var(--navy));
   color:var(--white);
-  padding:170px 0 120px;
+  padding:220px 0 180px;
   overflow:hidden;
 }
 .hero .wrap{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
@@ -266,7 +266,7 @@ footer p{color:rgba(255,255,255,0.45); font-size:0.82rem;}
   .service-grid{grid-template-columns:1fr;}
   .equip-grid{grid-template-columns:1fr;}
   .blog-grid{grid-template-columns:1fr;}
-  .hero{padding:140px 0 80px;}
+  .hero{padding:160px 0 120px;}
   .stat-row{grid-template-columns:1fr 1fr;}
 }
 

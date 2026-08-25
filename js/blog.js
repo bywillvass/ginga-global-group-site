@@ -43,10 +43,11 @@ async function renderBlogList() {
     grid.innerHTML = filtered.map(post => {
       const slug = post.Slug || slugify(post.Title);
       const img = post.Image || `images/blog-${slug}.jpg`;
+      const imgPos = post.ImagePosition || 'center 20%';
       return `
         <article class="blog-card">
           <div class="img-slot" style="--ar:16/9;">
-            <img src="${img}" alt="${escapeHtml(post.Title)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <img src="${img}" alt="${escapeHtml(post.Title)}" style="object-position:${imgPos};" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="img-slot-label"><b>${img}</b><span>1200×675px</span></div>
           </div>
           <div class="blog-card-body">
@@ -83,6 +84,7 @@ async function renderBlogPost() {
 
     document.title = `${post.Title} | Ginga Global Group`;
     const img = post.Image || `images/blog-${slug}.jpg`;
+    const imgPos = post.ImagePosition || 'center 20%';
     const paragraphs = String(post.Content || '').split(/\n+/).filter(Boolean).map(p => `<p>${escapeHtml(p)}</p>`).join('');
 
     container.innerHTML = `
@@ -97,7 +99,7 @@ async function renderBlogPost() {
       <section class="post-body">
         <div class="wrap post-content-wrap">
           <div class="img-slot" style="--ar:16/9;">
-            <img src="${img}" alt="${escapeHtml(post.Title)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <img src="${img}" alt="${escapeHtml(post.Title)}" style="object-position:${imgPos};" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="img-slot-label"><b>${img}</b><span>1600×900px</span></div>
           </div>
           <div class="post-content">${paragraphs}</div>

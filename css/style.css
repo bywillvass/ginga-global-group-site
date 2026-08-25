@@ -228,6 +228,11 @@ select option{color:#111;}
 .blog-card .img-slot img{object-position: center 20%;}
 .blog-card-body{padding:28px; flex:1; display:flex; flex-direction:column;}
 .blog-tag{font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;}
+.blog-tag.tag-link{text-decoration:none; display:inline-block; cursor:pointer; transition:opacity .15s;}
+.blog-tag.tag-link:hover{opacity:0.65;}
+.blog-filter-bar{margin-bottom:32px;}
+.blog-filter-bar p{color:rgba(18,20,46,0.65); font-size:0.92rem;}
+.blog-filter-bar a{color:var(--gold); font-weight:600;}
 .blog-card h3{font-size:1.25rem; color:var(--navy); margin-bottom:10px;}
 .blog-card p{color:rgba(18,20,46,0.65); font-size:0.92rem; margin-bottom:18px;}
 .blog-read{font-size:0.85rem; font-weight:600; color:var(--navy); margin-top:auto;}

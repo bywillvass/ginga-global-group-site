@@ -254,9 +254,28 @@ select option{color:#111;}
 .social-row a{width:36px; height:36px; border:1px solid rgba(198,161,91,0.4); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.8rem;}
 .social-row a:hover{background:var(--gold); color:var(--navy-deep);}
 
-footer{background:var(--navy-deep); border-top:1px solid rgba(198,161,91,0.15); padding:32px 0;}
-footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
-footer p{color:rgba(255,255,255,0.45); font-size:0.82rem;}
+/* ---------- site footer ---------- */
+.site-footer{background:var(--navy-deep); border-top:3px solid var(--gold);}
+.footer-top{padding:60px 0 40px;}
+.footer-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:48px; align-items:start;}
+.footer-brand .logo-img{height:36px; margin-bottom:14px;}
+.footer-tagline{color:rgba(255,255,255,0.45); font-size:0.85rem; margin-top:10px; max-width:260px; line-height:1.65;}
+.footer-nav ul{list-style:none; display:flex; flex-direction:column; gap:10px; margin:0; padding:0;}
+.footer-nav a{color:rgba(255,255,255,0.6); font-size:0.88rem; transition:color .2s;}
+.footer-nav a:hover{color:var(--gold);}
+.footer-connect{display:flex; flex-direction:column; gap:20px;}
+.footer-social{display:flex; gap:14px;}
+.footer-icon{color:var(--gold); transition:color .2s; display:flex; align-items:center;}
+.footer-icon:hover{color:var(--white);}
+.footer-icon svg{width:22px; height:22px;}
+.footer-external{display:inline-flex; align-items:center; gap:6px; color:rgba(255,255,255,0.6); font-size:0.88rem; font-family:var(--font-head); font-weight:600; letter-spacing:0.02em; transition:color .2s;}
+.footer-external:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(198,161,91,0.15); padding:20px 0;}
+.footer-bottom-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
+.footer-bottom p{color:rgba(255,255,255,0.35); font-size:0.8rem;}
+.footer-legal{display:flex; gap:20px;}
+.footer-legal a{color:rgba(255,255,255,0.35); font-size:0.8rem; transition:color .2s;}
+.footer-legal a:hover{color:var(--gold);}
 
 @media (max-width: 860px){
   .nav-links{display:none;}
@@ -270,6 +289,11 @@ footer p{color:rgba(255,255,255,0.45); font-size:0.82rem;}
   .blog-grid{grid-template-columns:1fr;}
   .hero{padding:160px 0 120px;}
   .stat-row{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr; text-align:center;}
+  .footer-tagline{max-width:none;}
+  .footer-social{justify-content:center;}
+  .footer-connect{align-items:center;}
+  .footer-bottom-inner{flex-direction:column; text-align:center;}
 }
 
 @media (prefers-reduced-motion: reduce){

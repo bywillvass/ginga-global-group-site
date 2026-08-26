@@ -119,6 +119,45 @@ async function renderBlogPost() {
     document.title = `${post.Title} | Ginga Global Group`;
 
     const img        = post.Image || `images/blog-${slug}.jpg`;
+    const absImg     = img.startsWith('http') ? img : `https://gingaglobalgroup.com/${img}`;
+    const desc       = post.Excerpt || post.Title;
+    const postUrl    = `https://gingaglobalgroup.com/blog-post.html?slug=${encodeURIComponent(slug)}`;
+
+    // Inject / update meta tags and canonical for this post
+    const setMeta = (sel, attr, val) => {
+      let el = document.querySelector(sel);
+      if (!el) { el = document.createElement('meta'); document.head.appendChild(el); }
+      el.setAttribute(attr, val);
+    };
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
+    canonical.href = postUrl;
+    setMeta('meta[name="description"]', 'content', desc);
+    setMeta('meta[property="og:title"]', 'content', document.title);
+    setMeta('meta[property="og:description"]', 'content', desc);
+    setMeta('meta[property="og:url"]', 'content', postUrl);
+    setMeta('meta[property="og:image"]', 'content', absImg);
+    setMeta('meta[name="twitter:title"]', 'content', document.title);
+    setMeta('meta[name="twitter:description"]', 'content', desc);
+    setMeta('meta[name="twitter:image"]', 'content', absImg);
+
+    // BlogPosting JSON-LD
+    const existingLd = document.getElementById('blog-post-ld');
+    if (existingLd) existingLd.remove();
+    const ldScript = document.createElement('script');
+    ldScript.type = 'application/ld+json';
+    ldScript.id = 'blog-post-ld';
+    ldScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.Title,
+      "description": desc,
+      "image": absImg,
+      "datePublished": post.Date || '',
+      "author": {"@type": "Organization", "name": "Ginga Global Group"},
+      "publisher": {"@type": "Organization", "name": "Ginga Global Group", "url": "https://gingaglobalgroup.com"}
+    });
+    document.head.appendChild(ldScript);
     const imgPos     = post.ImagePosition || 'center 20%';
     const tag        = post.Tag || post.Category || 'GGG';
     const paragraphs = String(post.Content || '').split(/\n+/).filter(Boolean).map(p => `<p>${escapeHtml(p)}</p>`).join('');

@@ -63,34 +63,60 @@ async function renderBlogList() {
 
   // Tag filter from URL (?tag=Tours)
   const params = new URLSearchParams(window.location.search);
-  const activeTag = params.get('tag');
+  const urlTag = params.get('tag');
 
-  // Update page hero when filtering by tag
-  if (activeTag) {
-    const heroH1 = document.querySelector('.page-hero h1');
-    const heroP  = document.querySelector('.page-hero p');
-    const heroBc = document.querySelector('.page-hero .breadcrumb');
-    if (heroH1) heroH1.textContent = activeTag;
-    if (heroBc) heroBc.innerHTML = `<a href="/">Home</a> / <a href="blog">Blog</a> / ${escapeHtml(activeTag)}`;
-    if (heroP)  heroP.innerHTML  = `Posts tagged <strong style="color:var(--gold);">${escapeHtml(activeTag)}</strong> &nbsp;·&nbsp; <a href="blog" style="color:var(--gold); font-weight:600;">← All posts</a>`;
+  // Main blog listing page: wire up filter buttons
+  const mainGrid  = document.getElementById('blogGrid');
+  const filterBar = document.getElementById('blogFilterBar');
+  const filterEl  = document.getElementById('blogFilters');
+
+  if (mainGrid && filterEl) {
+    const tags = ['All', ...new Set(posts.map(p => p.Tag || p.Category).filter(Boolean))];
+    let active = urlTag || 'All';
+
+    const applyFilter = (tag) => {
+      active = tag;
+      const filtered = tag === 'All'
+        ? posts
+        : posts.filter(p => (p.Tag || p.Category || '') === tag);
+      mainGrid.innerHTML = filtered.length
+        ? filtered.map(p => renderBlogCard(p)).join('')
+        : `<div class="blog-empty">No posts tagged "${escapeHtml(tag)}" yet.</div>`;
+      filterEl.querySelectorAll('.blog-filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === active);
+      });
+    };
+
+    // Only show the filter bar when there are multiple tags to filter by
+    if (tags.length > 2) {
+      filterEl.innerHTML = tags.map(t =>
+        `<button class="blog-filter-btn${t === active ? ' active' : ''}" data-filter="${escapeHtml(t)}">${escapeHtml(t)}</button>`
+      ).join('');
+      filterEl.querySelectorAll('.blog-filter-btn').forEach(btn =>
+        btn.addEventListener('click', () => applyFilter(btn.dataset.filter))
+      );
+      filterBar.style.display = '';
+    }
+
+    applyFilter(active);
+    return;
   }
 
+  // Non-main grids (e.g. blog-post.html related sections)
   grids.forEach(grid => {
-    // data-tag targets a specific tag; data-category kept for legacy grids
-    const tagFilter  = grid.dataset.tag || null;
-    const catFilter  = grid.dataset.category || null;
+    const tagFilter = grid.dataset.tag || null;
+    const catFilter = grid.dataset.category || null;
 
     let filtered = posts;
-    if (tagFilter)  filtered = filtered.filter(p => (p.Tag || '').toLowerCase() === tagFilter.toLowerCase());
-    if (catFilter)  filtered = filtered.filter(p => (p.Tag || p.Category || '') === catFilter);
-    if (activeTag)  filtered = filtered.filter(p => (p.Tag || p.Category || '').toLowerCase() === activeTag.toLowerCase());
+    if (tagFilter) filtered = filtered.filter(p => (p.Tag || '').toLowerCase() === tagFilter.toLowerCase());
+    if (catFilter) filtered = filtered.filter(p => (p.Tag || p.Category || '') === catFilter);
 
     if (!filtered.length) {
-      grid.innerHTML = `<div class="blog-empty">${activeTag ? `No posts tagged "${escapeHtml(activeTag)}" yet.` : 'No posts published yet — check back soon.'}</div>`;
+      grid.innerHTML = '<div class="blog-empty">No posts published yet — check back soon.</div>';
       return;
     }
 
-    grid.innerHTML = filtered.map(post => renderBlogCard(post)).join('');
+    grid.innerHTML = filtered.map(p => renderBlogCard(p)).join('');
   });
 }
 

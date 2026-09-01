@@ -140,6 +140,12 @@ header{
 .about-stat span{font-size:0.85rem; color:rgba(18,20,46,0.55);}
 .stat-row{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:30px;}
 
+/* ---------- glance grid (trial/event detail panels) ---------- */
+.glance-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+.glance-item{border-top:2px solid var(--gold); padding:20px 0;}
+.glance-label{display:block; font-family:var(--font-head); font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;}
+.glance-value{display:block; font-size:0.95rem; font-weight:500; color:var(--navy); line-height:1.5;}
+
 .team-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:20px;}
 .team-card h3{font-size:1.25rem; color:var(--navy); margin:18px 0 2px;}
 .team-card .role{color:var(--gold); font-size:0.8rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:14px; display:block;}
@@ -301,6 +307,13 @@ select option{color:#111;}
   .footer-social{justify-content:center;}
   .footer-connect{align-items:center;}
   .footer-bottom-inner{flex-direction:column; text-align:center;}
+  .program-card{padding:32px 24px;}
+  .glance-grid{grid-template-columns:1fr 1fr;}
+}
+
+@media (max-width: 480px){
+  .glance-grid{grid-template-columns:1fr;}
+  .program-card{padding:24px 16px;}
 }
 
 @media (prefers-reduced-motion: reduce){

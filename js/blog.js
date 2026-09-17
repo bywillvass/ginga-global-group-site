@@ -71,34 +71,49 @@ async function renderBlogList() {
   const filterEl  = document.getElementById('blogFilters');
 
   if (mainGrid && filterEl) {
-    const tags = ['All', ...new Set(posts.map(p => p.Tag || p.Category).filter(Boolean))];
-    let active = urlTag || 'All';
+    const tags       = ['All', ...new Set(posts.map(p => p.Tag || p.Category).filter(Boolean))];
+    const seriesList = ['All', ...new Set(posts.map(p => p.Series).filter(Boolean))];
+    let activeTag    = urlTag || 'All';
+    let activeSeries = 'All';
 
-    const applyFilter = (tag) => {
-      active = tag;
-      const filtered = tag === 'All'
-        ? posts
-        : posts.filter(p => (p.Tag || p.Category || '') === tag);
+    const applyFilters = () => {
+      let filtered = posts;
+      if (activeTag    !== 'All') filtered = filtered.filter(p => (p.Tag || p.Category || '') === activeTag);
+      if (activeSeries !== 'All') filtered = filtered.filter(p => p.Series === activeSeries);
       mainGrid.innerHTML = filtered.length
         ? filtered.map(p => renderBlogCard(p)).join('')
-        : `<div class="blog-empty">No posts tagged "${escapeHtml(tag)}" yet.</div>`;
-      filterEl.querySelectorAll('.blog-filter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.filter === active);
-      });
+        : `<div class="blog-empty">No posts found.</div>`;
+      filterEl.querySelectorAll('.blog-filter-btn').forEach(btn =>
+        btn.classList.toggle('active', btn.dataset.filter === activeTag));
+      const seriesEl = document.getElementById('blogSeriesFilters');
+      if (seriesEl) seriesEl.querySelectorAll('.blog-filter-btn').forEach(btn =>
+        btn.classList.toggle('active', btn.dataset.filter === activeSeries));
     };
 
-    // Only show the filter bar when there are multiple tags to filter by
     if (tags.length > 2) {
       filterEl.innerHTML = tags.map(t =>
-        `<button class="blog-filter-btn${t === active ? ' active' : ''}" data-filter="${escapeHtml(t)}">${escapeHtml(t)}</button>`
+        `<button class="blog-filter-btn${t === activeTag ? ' active' : ''}" data-filter="${escapeHtml(t)}">${escapeHtml(t)}</button>`
       ).join('');
       filterEl.querySelectorAll('.blog-filter-btn').forEach(btn =>
-        btn.addEventListener('click', () => applyFilter(btn.dataset.filter))
+        btn.addEventListener('click', () => { activeTag = btn.dataset.filter; applyFilters(); })
       );
       filterBar.style.display = '';
     }
 
-    applyFilter(active);
+    const seriesBar = document.getElementById('blogSeriesBar');
+    const seriesEl  = document.getElementById('blogSeriesFilters');
+    if (seriesList.length > 1 && seriesBar && seriesEl) {
+      seriesEl.innerHTML = seriesList.map(s =>
+        `<button class="blog-filter-btn${s === activeSeries ? ' active' : ''}" data-filter="${escapeHtml(s)}">${escapeHtml(s)}</button>`
+      ).join('');
+      seriesEl.querySelectorAll('.blog-filter-btn').forEach(btn =>
+        btn.addEventListener('click', () => { activeSeries = btn.dataset.filter; applyFilters(); })
+      );
+      seriesBar.style.display = '';
+      filterBar.style.display = '';
+    }
+
+    applyFilters();
     return;
   }
 

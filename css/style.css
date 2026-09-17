@@ -301,7 +301,7 @@ select option{color:#111;}
   .form-row{grid-template-columns:1fr;}
   .service-grid{grid-template-columns:1fr;}
   .equip-grid{grid-template-columns:1fr;}
-  .blog-grid{grid-template-columns:1fr;}
+  .blog-grid{grid-template-columns:1fr 1fr;}
   .hero{padding:160px 0 120px;}
   .stat-row{grid-template-columns:1fr 1fr;}
   .footer-grid{grid-template-columns:1fr; text-align:center;}

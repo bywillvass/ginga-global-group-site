@@ -228,7 +228,7 @@ select option{color:#111;}
 
 /* ---------- blog ---------- */
 .blog{padding:110px 0; background:var(--white);}
-.blog-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+.blog-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
 .blog-card{border:1px solid rgba(12,15,76,0.1); border-radius:4px; overflow:hidden; display:flex; flex-direction:column;}
 .blog-card .img-slot{--ar: 16/9; border-radius:0; border-left:none; border-right:none; border-top:none;}
 .blog-card .img-slot img{object-position: center 20%;}

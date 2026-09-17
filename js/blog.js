@@ -186,7 +186,11 @@ async function renderBlogPost() {
     document.head.appendChild(ldScript);
     const imgPos     = post.ImagePosition || 'center 20%';
     const tag        = post.Tag || post.Category || 'GGG';
-    const paragraphs = String(post.Content || '').split(/\n+/).filter(Boolean).map(p => `<p>${escapeHtml(p)}</p>`).join('');
+    const paragraphs = String(post.Content || '').split(/\n+/).filter(Boolean).map(p => {
+      const imgMatch = p.match(/^\[img:(.+?)\]$/);
+      if (imgMatch) return `<div class="post-inline-img"><img src="${imgMatch[1]}" alt=""></div>`;
+      return `<p>${escapeHtml(p)}</p>`;
+    }).join('');
 
     // Same-series posts (excluding current post)
     const seriesPosts = post.Series

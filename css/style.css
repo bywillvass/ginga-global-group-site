@@ -255,6 +255,7 @@ select option{color:#111;}
 .post-body .img-slot img{object-position: center 20%;}
 .post-content{max-width:720px; margin:0 auto; font-size:1.02rem; color:rgba(18,20,46,0.8);}
 .post-content p{margin-bottom:18px;}
+.post-inline-img{margin:28px 0;} .post-inline-img img{width:100%; border-radius:10px; display:block;}
 .post-content-wrap{max-width:720px; margin:0 auto;}
 
 /* ---------- contact ---------- */

@@ -26,9 +26,9 @@
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://gingaglobalgroup.com/"},{"@type":"ListItem","position":2,"name":"Programs","item":"https://gingaglobalgroup.com/programs"},{"@type":"ListItem","position":3,"name":"Thailand Tour 2024","item":"https://gingaglobalgroup.com/thailand-tour"}]}
 </script>
 <style>
-  .tour-gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:40px;}
-  .tour-gallery img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:4px; display:block;}
-  @media(max-width:700px){.tour-gallery{grid-template-columns:1fr 1fr;}}
+  .tour-gallery{columns:3; column-gap:16px; margin-top:40px;}
+  .tour-gallery img{width:100%; display:block; border-radius:4px; margin-bottom:16px; break-inside:avoid;}
+  @media(max-width:700px){.tour-gallery{columns:2;}}
 </style>
 </head>
 <body>

@@ -251,6 +251,23 @@ async function renderBlogPost() {
         </div>
       </section>` : '';
 
+    const postNewsletterBlock = `
+      <div class="post-newsletter">
+        <h3>Get the next one in your inbox</h3>
+        <div class="newsletter-wrap">
+          <form class="newsletter-form" novalidate>
+            <input type="text" name="company" tabindex="-1" autocomplete="off" class="honeypot" aria-hidden="true">
+            <input type="hidden" name="formType" value="Newsletter">
+            <input type="hidden" name="SourcePage" value="">
+            <div class="nl-row">
+              <input type="email" name="Email" placeholder="Your email address" required autocomplete="email">
+              <button type="submit" class="btn btn-gold">Subscribe</button>
+            </div>
+            <p class="nl-note">Unsubscribe anytime.</p>
+          </form>
+        </div>
+      </div>`;
+
     container.innerHTML = `
       <div class="post-header">
         <div class="wrap">
@@ -267,10 +284,13 @@ async function renderBlogPost() {
             <div class="img-slot-label"><b>${img}</b><span>1600×900px</span></div>
           </div>
           <div class="post-content">${paragraphs}</div>
+          ${postNewsletterBlock}
         </div>
       </section>
       ${seriesSection}
       ${othersSection}`;
+
+    initNewsletterForms();
   } catch (err) {
     container.innerHTML = '<div class="post-body wrap"><div class="blog-post-empty">Couldn\'t load this post right now.</div></div>';
   }

@@ -18,7 +18,56 @@ document.addEventListener('DOMContentLoaded', () => {
         : 'position:absolute; top:100%; left:0; right:0; flex-direction:column; background:#070921; padding:20px 24px; gap:18px; display:flex;';
     });
   }
+  initNewsletterForms();
 });
+
+// ---- newsletter signup forms ----
+function initNewsletterForms() {
+  document.querySelectorAll('.newsletter-form:not([data-nl-init])').forEach(form => {
+    form.setAttribute('data-nl-init', '1');
+
+    const sourceField = form.querySelector('[name="SourcePage"]');
+    if (sourceField) sourceField.value = window.location.pathname;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const honeypot = form.querySelector('[name="company"]');
+      if (honeypot && honeypot.value) return;
+
+      const emailInput = form.querySelector('[name="Email"]');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+      if (!emailVal || !emailVal.includes('@') || !emailVal.includes('.')) {
+        if (emailInput) emailInput.focus();
+        return;
+      }
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const wrap = form.closest('.newsletter-wrap');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      const errEl = form.querySelector('.nl-error');
+      if (errEl) errEl.remove();
+
+      const data = new FormData(form);
+
+      try {
+        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+        if (wrap) {
+          wrap.innerHTML = '<p class="newsletter-success">You\'re in. Watch your inbox.</p>';
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Subscribe';
+        const p = document.createElement('p');
+        p.className = 'nl-error';
+        p.textContent = 'Something went wrong - try again.';
+        form.appendChild(p);
+      }
+    });
+  });
+}
 
 // ---- generic form -> Google Sheet submit handler ----
 function handleFormSubmit(form, statusEl, submitLabel) {

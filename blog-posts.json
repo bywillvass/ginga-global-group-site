@@ -1,17 +1,5 @@
 [
   {
-    "Title": "test post crm",
-    "Slug": "test-post-crm",
-    "Date": "2026-10-01",
-    "Tag": "News",
-    "Series": "",
-    "Excerpt": "",
-    "Content": "hey this is a test\n[img:https://iaigtvfdteagnvkljvcq.supabase.co/storage/v1/object/public/blog-media/posts/test-post-crm/1790865810680-qf7jhqy8b3.png]",
-    "Image": "https://iaigtvfdteagnvkljvcq.supabase.co/storage/v1/object/public/blog-media/posts/test-post-crm/1790865842618-jvz25x28ela.png",
-    "ImagePosition": "",
-    "Published": true
-  },
-  {
     "Title": "Australia’s Football and Futsal Future Depends on Looking Outward.",
     "Slug": "lookingoutward",
     "Date": "2025-10-13",

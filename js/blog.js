@@ -25,6 +25,59 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+// Post bodies written in the CRM editor arrive as HTML (ContentHtml).
+// Keep only the tags and paragraph styles the editor can produce.
+const POST_TAGS = new Set(['P','H2','H3','H4','STRONG','B','EM','I','U','S','A','UL','OL','LI','BLOCKQUOTE','HR','BR','IMG']);
+const POST_CLASSES = new Set(['headline','kicker','lead','info','ends','boilerplate','small']);
+
+function sanitizePostHtml(html) {
+  const doc = new DOMParser().parseFromString(`<div>${html}</div>`, 'text/html');
+  const clean = (node) => {
+    [...node.childNodes].forEach(child => {
+      if (child.nodeType === Node.TEXT_NODE) return;
+      if (child.nodeType !== Node.ELEMENT_NODE || !POST_TAGS.has(child.tagName)) {
+        if (child.nodeType === Node.ELEMENT_NODE && !['SCRIPT','STYLE','IFRAME','OBJECT'].includes(child.tagName)) {
+          clean(child);
+          child.replaceWith(...child.childNodes);
+        } else {
+          child.remove();
+        }
+        return;
+      }
+      [...child.attributes].forEach(attr => {
+        const name = attr.name.toLowerCase();
+        const val = attr.value.trim();
+        const safeUrl = /^(https?:|mailto:|tel:|\/|#)/i.test(val) || !/^[a-z][a-z0-9+.-]*:/i.test(val);
+        if (name === 'class') {
+          const kept = val.split(/\s+/).filter(c => POST_CLASSES.has(c));
+          kept.length ? child.setAttribute('class', kept.join(' ')) : child.removeAttribute('class');
+        } else if (child.tagName === 'A' && name === 'href' && safeUrl) {
+          child.setAttribute('target', '_blank');
+          child.setAttribute('rel', 'noopener noreferrer');
+        } else if (child.tagName === 'IMG' && (name === 'src' && safeUrl || name === 'alt')) {
+          // keep
+        } else if (!(child.tagName === 'A' && (name === 'target' || name === 'rel'))) {
+          child.removeAttribute(attr.name);
+        }
+      });
+      if (child.tagName === 'IMG') {
+        child.setAttribute('loading', 'lazy');
+        const wrap = document.createElement('div');
+        wrap.className = 'post-inline-img';
+        child.replaceWith(wrap);
+        wrap.appendChild(child);
+        return;
+      }
+      clean(child);
+      // Drop empty paragraphs and headings left over from pasting
+      if (/^(P|H2|H3|H4)$/.test(child.tagName) && !child.textContent.trim() && !child.querySelector('img,br')) child.remove();
+    });
+  };
+  const root = doc.body.firstChild;
+  clean(root);
+  return root.innerHTML;
+}
+
 function renderBlogCard(post) {
   const slug = post.Slug || slugify(post.Title);
   const img = post.Image || `images/blog-${slug}.jpg`;
@@ -201,7 +254,7 @@ async function renderBlogPost() {
     document.head.appendChild(ldScript);
     const imgPos     = post.ImagePosition || 'center 20%';
     const tag        = post.Tag || post.Category || 'GGG';
-    const paragraphs = String(post.Content || '').split(/\n+/).filter(Boolean).map(p => {
+    const paragraphs = post.ContentHtml ? sanitizePostHtml(post.ContentHtml) : String(post.Content || '').split(/\n+/).filter(Boolean).map(p => {
       const imgMatch = p.match(/^\[img:(.+?)\]$/);
       if (imgMatch) return `<div class="post-inline-img"><img src="${imgMatch[1]}" alt=""></div>`;
       return `<p>${escapeHtml(p)}</p>`;

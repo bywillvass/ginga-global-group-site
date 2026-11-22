@@ -258,6 +258,36 @@ select option{color:#111;}
 .post-content p{margin-bottom:18px;}
 .post-inline-img{margin:28px 0;} .post-inline-img img{width:100%; border-radius:10px; display:block;}
 .post-content-wrap{max-width:720px; margin:0 auto;}
+/* Post body styles. Mirrors .blog-content in the CRM (ggg-crm src/app/globals.css) so posts look the same in the editor. */
+.post-content > *{margin:0;} .post-content p{margin-bottom:0;}
+.post-content > * + *{margin-top:18px;}
+.post-content h2, .post-content h3, .post-content .headline{font-family:var(--font-head); color:var(--navy); font-weight:700; letter-spacing:-0.01em;}
+.post-content h2{font-size:1.75rem; line-height:1.15; margin-top:44px;}
+.post-content h3{font-size:1.25rem; line-height:1.25; margin-top:32px;}
+.post-content h2 + *, .post-content h3 + *{margin-top:12px;}
+.post-content .headline{font-size:clamp(1.7rem,3.6vw,2.15rem); line-height:1.1; margin-top:10px;}
+.post-content .kicker{font-family:var(--font-head); font-size:0.74rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
+.post-content .kicker + .headline{margin-top:8px;}
+.post-content .lead{font-size:1.2rem; line-height:1.6; font-weight:500; color:var(--navy);}
+.post-content strong{font-weight:700; color:var(--navy);}
+.post-content a{color:var(--navy); text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:3px;}
+.post-content blockquote{border-left:3px solid var(--gold); padding:4px 0 4px 22px; font-family:var(--font-head); font-size:1.2rem; font-weight:500; line-height:1.5; color:var(--navy);}
+.post-content blockquote p + p{margin-top:10px;}
+.post-content .info{background:rgba(12,15,76,0.04); border-left:3px solid var(--gold); padding:2px 20px; color:var(--navy);}
+.post-content :not(.info) + .info, .post-content .info:first-child{padding-top:16px;}
+.post-content .info:not(:has(+ .info)){padding-bottom:16px;}
+.post-content .info + .info{margin-top:0;}
+.post-content .ends{display:flex; align-items:center; gap:18px; margin-top:40px; font-family:var(--font-head); font-size:0.8rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--navy);}
+.post-content .ends::before, .post-content .ends::after{content:""; flex:1; height:1px; background:rgba(12,15,76,0.15);}
+.post-content .ends + *{margin-top:32px;}
+.post-content .boilerplate{font-size:0.92rem; color:rgba(18,20,46,0.65);}
+.post-content .small{font-size:0.85rem; color:rgba(18,20,46,0.6);}
+.post-content ul, .post-content ol{padding-left:1.4rem;}
+.post-content ul{list-style:disc;}
+.post-content ol{list-style:decimal;}
+.post-content li + li{margin-top:6px;}
+.post-content li::marker{color:var(--gold);}
+.post-content hr{border:0; height:1px; background:rgba(12,15,76,0.15); margin:36px 0;}
 
 /* ---------- contact ---------- */
 .contact{background:var(--navy-deep); color:var(--white); padding:110px 0;}

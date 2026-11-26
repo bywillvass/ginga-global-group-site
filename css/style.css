@@ -341,10 +341,12 @@ select option{color:#111;}
   .footer-bottom-inner{flex-direction:column; text-align:center;}
   .program-card{padding:32px 24px;}
   .glance-grid{grid-template-columns:1fr 1fr;}
+  .trial-cards-grid{grid-template-columns:1fr;}
 }
 
 @media (max-width: 480px){
   .glance-grid{grid-template-columns:1fr;}
+  .trial-card-inner{grid-template-columns:1fr;}
   .program-card{padding:24px 16px;}
 }
 
